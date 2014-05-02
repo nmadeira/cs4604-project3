@@ -1,5 +1,5 @@
 <?php
-require('lib/db.php');
+require('../lib/db.php');
 ?>
 <html>
 <head>
