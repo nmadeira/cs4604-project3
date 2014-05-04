@@ -27,3 +27,7 @@
 	cursor: pointer;
 }
 
+#modal-loading {
+	float: left;
+	position: absolute;
+}

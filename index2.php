@@ -25,7 +25,8 @@
 	<p>Click on any of the following queries to see the returned rows: </p>
 	<ul id="queryList">
 	<li>Getting list of 10 users with most friends:<br>
-		<code>SELECT uid1, first_name, last_name, count(uid2) "total" FROM friends,userinfo WHERE friends.uid1=userinfo.uid GROUP BY uid1,first_name,last_name ORDER BY total desc limit 10;</code></li>
+		<p class="clickable bg-danger">SELECT uid1, first_name, last_name, count(uid2) "total" FROM friends,userinfo WHERE friends.uid1=userinfo.uid 
+			GROUP BY uid1,first_name,last_name ORDER BY total desc limit 10;</p></li>
 	</ul>
 
 	<!-- Ad-hoc query form -->
@@ -52,6 +53,7 @@
 				<div class="modal-body">
 					<div id="modal-loading"><span class="glyphicon glyphicon-refresh rotating"></span> Loading data ...</div>
 					<div class="bg-danger" id="load-alert"><p>Data cannot be loaded at this time, please try again later!</p></div>
+					<div class="bg-danger" id="query-alert"><p>You either entered a bad query or no rows where returned!</p></div>
 					<div class="table-responsive" id="modal-table">
 						<div id="pagination" class="text-center"></div>
 						<table class="table table-hover table-striped table-condensed" id="results-table">
@@ -71,11 +73,12 @@
 	<script type="text/javascript">
 	$(document).ready(function($) {
 		$('#load-alert').hide(0);
+		$('#query-alert').hide(0);
 		$("#relationList").click(function(e) {
 			var table = e.target.innerHTML.toLowerCase();
 			loadTable(table, 20, 1, '', '');
 		});
-		$("#queryList code").click(function(e) {
+		$("#queryList p").click(function(e) {
 			var query = e.target.innerHTML;
 			loadQuery(query, 20, 1, '', '');
 		});
@@ -83,10 +86,12 @@
 	});
 
 	function loadTable(table, limit, page, sort, order) {
+		$('#load-alert').hide(0);
+		$('#query-alert').hide(0);
 		$('#modal-loading').show(0);
-		//$('#resultsModalTitle').html('Loading ...');
+		$('#resultsModalTitle').html('Loading ...');
 		$('#results-table').html('');
-		$('#pagination').html('');
+		// $('#pagination').html('');
 		$('#resultsModal').modal('show');
 		$.ajax({
 			url: 'process.php',
@@ -106,6 +111,8 @@
 	}
 
 	function loadQuery(query, limit, page, sort, order) {
+		$('#load-alert').hide(0);
+		$('#query-alert').hide(0);
 		$('#modal-loading').show(0);
 		$('#resultsModalTitle').html('Loading ...');
 		$('#results-table').html('');
@@ -118,11 +125,16 @@
 		})
 		.done(function(msg) {
 			var res = JSON.parse(msg);
+			if(res.rows.length == 0) {
+				badQuery();
+				return false;
+			}
 			generateTable2(res);
 			$('#modal-loading').hide(0);
 		})
 		.fail(function() {
 			$('#load-alert').show(0);
+			$('#resultsModalTitle').html('Error!');
 		})
 		.always(function() {
 		});
@@ -248,6 +260,12 @@
 		// put in place
 		$('#results-table').append(content);
 		$('#pagination').html(pagination);
+	}
+
+	function badQuery() {
+		$('#resultsModalTitle').html('Error!');
+		$('#query-alert').show(0);
+		$('#modal-loading').hide(0);
 	}
 	</script>
 </body>

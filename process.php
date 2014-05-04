@@ -114,14 +114,15 @@ switch ($o) {
 		if(!strpos(strtolower($q), "limit")) {
 			$query .= " LIMIT $l OFFSET $offset";
 		}
+		// echo $query;
 		$data['rows'] = db_query_array($query);
 		$data['query'] = $q;
 		$data['page'] = $p;
 		$data['limit'] = $l;
-		if(count($data['rows']) >= $l) {
-			$data['size'] = query_size($query);
+		if(strpos(strtolower($q), "limit")) {
+			$data['size'] = $l;
 		} else {
-			$data['size'] = count($data['rows']);
+			$data['size'] = query_size($q);
 		}
 		if(isset($_REQUEST['so'])) {
 			$data['sort'] = $_REQUEST['so'];
