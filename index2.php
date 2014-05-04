@@ -5,6 +5,10 @@
 	<link rel="stylesheet" type="text/css" href="css/custom.css">
 </head>
 <body>
+	<header>
+      <h1 class="reflected">SQLKillers</h1><br>
+	  <h3 class="reflected">Behrooz Kamali, Nick Madeira, Paul Sharma</h3>
+    </header>
 	
 	<div class="row">
 		<div class="col-xs-1"></div>
@@ -12,13 +16,13 @@
 	<!-- List of tables -->
 	<p>Click on any of the following relations to see the data in that relation: </p>
 	<ul id="relationList">
-		<li>Video</li>
-		<li>Performer</li>
-		<li>UserInfo</li>
-		<li>Director</li>
-		<li>MovieInfo</li>
-		<li>TvEpisodeInfo</li>
-		<li>Certificates</li>
+		<li class="clickable bg-danger">Video</li>
+		<li class="clickable bg-danger">Performer</li>
+		<li class="clickable bg-danger">UserInfo</li>
+		<li class="clickable bg-danger">Director</li>
+		<li class="clickable bg-danger">MovieInfo</li>
+		<li class="clickable bg-danger">TvEpisodeInfo</li>
+		<li class="clickable bg-danger">Certificates</li>
 	</ul>
 
 	<!-- List of queries -->
