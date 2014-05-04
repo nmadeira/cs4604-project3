@@ -27,6 +27,20 @@
 	<li>Getting list of 10 users with most friends:<br>
 		<p class="clickable bg-danger">SELECT uid1, first_name, last_name, count(uid2) "total" FROM friends,userinfo WHERE friends.uid1=userinfo.uid 
 			GROUP BY uid1,first_name,last_name ORDER BY total desc limit 10;</p></li>
+	<li>Getting list the top 50 best rated movies:<br>
+		<p class="clickable bg-danger">SELECT m.mid, m.mtitle, ROUND(AVG(r.rate_score), 2) AS avg_rate, ROUND(COUNT(r.rate_score), 0) AS rate_count, 
+			ROUND((AVG(r.rate_score) * COUNT(r.rate_score)) / COUNT(r.rate_score) * COUNT(r.rate_score)/100, 2) AS score_calc FROM movieinfo AS m, 
+			videoinfo AS v, ratings AS r WHERE m.mid = v.vid AND m.mid = r.vid GROUP BY m.mid, m.mtitle ORDER BY score_calc DESC LIMIT 50;</p></li>
+	<li>Getting all the movies that Brad Pitt has starred in:<br>
+		<p class="clickable bg-danger">SELECT * FROM videoinfo WHERE vid in (SELECT vid FROM actin WHERE 
+			pid = (SELECT pid FROM performer WHERE first_name = 'Brad' AND last_name = 'Pitt')) ORDER BY release_year desc LIMIT 10;</p></li>
+	<li>Getting all the Sci-Fi movies made in 2001:<br>
+		<p class="clickable bg-danger">SELECT v.vid, title, release_year, genre FROM videoinfo AS v, belongtoGenre AS b 
+			WHERE v.vid = b.vid AND v.release_year = 2001 AND genre = 'Sci-Fi' LIMIT 10;</p></li>
+	<li>Getting all users named Matt:<br>
+		<p class="clickable bg-danger">SELECT first_name,last_name FROM userinfo WHERE first_name='Matt' LIMIT 20;</p></li>
+	<li>Getting all the movies that were produced by TV UNAM:<br>
+		<p class="clickable bg-danger">SELECT title FROM videoinfo WHERE producer='TV UNAM' LIMIT 20;</p></li>	
 	</ul>
 
 	<!-- Ad-hoc query form -->
