@@ -38,6 +38,11 @@
     border-radius: 5px;
 }
 
+.clickable-title {
+    cursor: pointer;
+    font-weight: bold;
+}
+
 #modal-loading {
 	float: left;
 	position: absolute;
