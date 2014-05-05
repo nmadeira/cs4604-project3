@@ -214,7 +214,7 @@
 			if(data.sort == key && data.order != "1") {
 				order = "1";
 			}
-			content += "<th class='clickable' onclick=\"loadTable('" + data.table + "', " + data.limit + ", 1, '" + key + "', '" + order + "')\">";
+			content += "<th class='clickable-title' onclick=\"loadTable('" + data.table + "', " + data.limit + ", 1, '" + key + "', '" + order + "')\">";
 			content += key;
 			content += "</th>";
 		};
