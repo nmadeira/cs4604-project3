@@ -19,15 +19,14 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#predtabl">Relations</a></li>
+					<li><a href="#predtabl">Relations</a></li>
 					<li><a href="#predquer">Preset Queries</a></li>
 					<li><a href="#adhoc">Ad-hoc Queries</a></li>
-					<li><a href="#">Insertion</a></li>
-					<li><a href="#">Modification</a></li>
-					<li><a href="#">Deletion</a></li>
+					<li><a href="#insetionSec">Insertion</a></li>
+					<li><a href="#deletionSec">Deletion</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">About Us</a></li>
+					<li><a href="#about">About Us</a></li>
 				</ul>
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
@@ -36,8 +35,9 @@
 	<header>
 		<br><br><br>
 		<h1 class="reflected">SQLKillers</h1><br>
-		<a id="predtabl"></a>
 		<h3 class="reflected">Behrooz Kamali, Nick Madeira, Paul Sharma</h3>
+		<a id="predtabl"></a>
+		<br>
 	</header>
 	
 	<div class="row">
@@ -47,15 +47,17 @@
 	<h3>Table Queries</h3>
 	<p>Click on any of the following relations to see the data in that relation: </p>
 	<div class="list-group" id="relationList" style="width:200px;">
-		<a href="#" class="list-group-item">Video</a>
+		<a href="#" class="list-group-item">VideoInfo</a>
 		<a href="#" class="list-group-item">Performer</a>
 		<a href="#" class="list-group-item">UserInfo</a>
 		<a href="#" class="list-group-item">Director</a>
 		<a href="#" class="list-group-item">MovieInfo</a>
-		<a class="interlink" id="predquer"></a>
 		<a href="#" class="list-group-item">TvEpisodeInfo</a>
+		<a class="interlink" id="predquer"></a>
 		<a href="#" class="list-group-item">Certificates</a>
 	</div>
+
+	<hr>
 
 	<!-- List of queries -->
 	<h3>Preset Queries</h3>
@@ -76,10 +78,12 @@
 			WHERE v.vid = b.vid AND v.release_year = 2001 AND genre = 'Sci-Fi' LIMIT 10;</p></li>
 	<li>Getting all users named Matt:<br>
 		<p class="clickable bg-danger">SELECT first_name,last_name FROM userinfo WHERE first_name='Matt' LIMIT 20;</p></li>
-	<a id="adhoc"></a>
 	<li>Getting all the movies that were produced by TV UNAM:<br>
+	<a id="adhoc"></a>
 		<p class="clickable bg-danger">SELECT title FROM videoinfo WHERE producer='TV UNAM' LIMIT 20;</p></li>	
 	</ul>
+
+	<hr>
 
 	<!-- Ad-hoc query form -->
 	<h3>Ad-hoc Queries</h3>
@@ -89,12 +93,61 @@
 			<textarea class="form-control" id="adhocquery" placeholder="Enter query here" rows="6" style="width:75%;"></textarea>
 			<!-- <input type="text" class="form-control" id="adhocquery" placeholder="Enter query here"> -->
 		</div>
+		<a id="insetionSec"></a>
 		<button type="submit" class="btn btn-default">Submit</button>
 		<button type="reset" class="btn btn-default">Clear</button>
 	</form>
+
+	<hr>
+
+	<!-- Data insertion -->
+	<h3>Insertion</h3>
+	<p>Click on any of the following tables to insert values in them: </p>
+	<div class="list-group" id="insertionList" style="width:200px;">
+		<a href="#" class="list-group-item">VideoInfo</a>
+		<a href="#" class="list-group-item">Performer</a>
+		<a href="#" class="list-group-item">UserInfo</a>
+		<a href="#" class="list-group-item">Director</a>
+		<a href="#" class="list-group-item">MovieInfo</a>
+		<a href="#" class="list-group-item">Genre</a>
+		<a id="deletionSec"></a>
+		<a href="#" class="list-group-item">Certificates</a>
+	</div>
+
+	<hr>
+
+	<!-- Data Deletion -->
+	<h3>Deletion</h3>
+	<p>Click on any of the following tables to delete rows in them: </p>
+	<div class="list-group" id="deletionList" style="width:200px;">
+		<a href="#" class="list-group-item">VideoInfo</a>
+		<a href="#" class="list-group-item">Performer</a>
+		<a href="#" class="list-group-item">UserInfo</a>
+		<a href="#" class="list-group-item">Director</a>
+		<a href="#" class="list-group-item">MovieInfo</a>
+		<a href="#" class="list-group-item">Genre</a>
+		<a id="about"></a>
+		<a href="#" class="list-group-item">Certificates</a>
+	</div>
+
+	<hr>
+
+	<!-- About Us -->
+	<h3>About Us</h3>
+	<h4 class="text-info">Class information</h4>
+	<p class="lead">CS 4604: Introduction to Database Management Systems, Spring 2014<br>
+	Instructor: Dr. Aditya Prakash</p>
+	<h4 class="text-info">Team Members</h4>
+	<p class="lead" style="width:300px">Behrooz Kamali<br>
+		Nick Madeira<br>
+		Paul Sharma</p>
+
 	</div>
 	<div class="col-xs-1"></div>
 	</div>
+
+	<hr>
+
 
 	<!-- Results Modal -->
 	<div class="modal fade" id="resultsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -122,207 +175,32 @@
 		</div>
 	</div>
 
+	<!-- Insertion/Modification Modal -->
+	<div class="modal fade" id="insertionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="insertionModalTitle">Results Table</h4>
+				</div>
+				<div class="modal-body">
+					<div id="imodal-loading"><span class="glyphicon glyphicon-refresh rotating"></span> Loading data ...</div>
+					<div class="bg-danger" id="iload-alert"><p>Data cannot be loaded at this time, please try again later!</p></div>
+					<div class="bg-danger" id="iquery-alert"><p>You entered invalid data, fill all the required fields!</p></div>
+					<div class="bg-success" id="iquery-success"><p>Data is inserted successfully!</p></div>
+					<div class="" id="modal-form">
+						
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-	$(document).ready(function($) {
-		$('#load-alert').hide(0);
-		$('#query-alert').hide(0);
-		$("#relationList").click(function(e) {
-			var table = e.target.innerHTML.toLowerCase();
-			loadTable(table, 20, 1, '', '');
-		});
-		$("#queryList p").click(function(e) {
-			var query = e.target.innerHTML;
-			loadQuery(query, 20, 1, '', '');
-		});
-		$('#resultsModal').on('hide.bs.modal', function(e) {
-			$('#pagination').html('');
-			$('#results-table').html('');
-		});
-		document.forms[0].onsubmit = adhocQuery;
-	});
-
-	function loadTable(table, limit, page, sort, order) {
-		$('#load-alert').hide(0);
-		$('#query-alert').hide(0);
-		$('#modal-loading').show(0);
-		$('#resultsModalTitle').html('Loading ...');
-		$('#results-table').html('');
-		$('#resultsModal').modal('show');
-		$.ajax({
-			url: 'process.php',
-			type: 'GET',
-			data: {o: 's', t: table, l: limit, p: page, so: sort, or: order},
-		})
-		.done(function(msg) {
-			var res = JSON.parse(msg);
-			generateTable(res);
-			$('#modal-loading').hide(0);
-		})
-		.fail(function() {
-			$('#load-alert').show(0);
-		})
-		.always(function() {
-		});
-	}
-
-	function loadQuery(query, limit, page, sort, order) {
-		$('#load-alert').hide(0);
-		$('#query-alert').hide(0);
-		$('#modal-loading').show(0);
-		$('#resultsModalTitle').html('Loading ...');
-		$('#results-table').html('');
-		$('#resultsModal').modal('show');
-		$.ajax({
-			url: 'process.php',
-			type: 'GET',
-			data: {o: 'q', q: query, l: limit, p: page, so: sort, or: order},
-		})
-		.done(function(msg) {
-			var res = JSON.parse(msg);
-			if(res.rows.length == 0) {
-				badQuery();
-				return false;
-			}
-			generateTable2(res);
-			$('#modal-loading').hide(0);
-		})
-		.fail(function() {
-			$('#load-alert').show(0);
-			$('#resultsModalTitle').html('Error!');
-		})
-		.always(function() {
-		});
-	}
-
-	function adhocQuery(e) {
-		var field = $('#adhocquery');
-		var query = field.val();
-		loadQuery(query, 20, 1)
-		e.preventDefault();
-	}
-
-	function generateTable(data) {
-		// modal title
-		$('#resultsModalTitle').html(data.table + ' Table');
-
-		// table header
-		var content = "<tr>";
-		for (var key in data.rows[0]) {
-			var order = "";
-			if(data.sort == key && data.order != "1") {
-				order = "1";
-			}
-			content += "<th class='clickable-title' onclick=\"loadTable('" + data.table + "', " + data.limit + ", 1, '" + key + "', '" + order + "')\">";
-			content += key;
-			content += "</th>";
-		};
-		content += "</tr>\n";
-
-		// table body
-		for(var i = 0; i < data.rows.length; i++) {
-			content += "<tr>";
-			for(var key in data.rows[i]) {
-				content += "<td>";
-				if(data.rows[i][key] === "null") {
-
-				} else {
-					content += data.rows[i][key];
-				}
-				content += "</td>";
-			}
-			content += "</tr>";
-		}
-
-		// pagination
-		var page = parseInt(data.page);
-		var prev = page - 1;
-		var next = page + 1;
-		var pagination = "";
-		if(prev > 0) {
-			pagination += "<ul class='pagination'>";
-			pagination += "<li><a href='#' onclick=\"loadTable('" + data.table + "', " + data.limit + ", 1, '" + data.sort + "', '" + data.order + "')\">&laquo;</a></li>";
-			pagination += "<li><a href='#' onclick=\"loadTable('" + data.table + "', " + data.limit + ", " + prev + ", '" + data.sort + "', '" + data.order + "')\">&lsaquo;</a></li>";
-			pagination += "</ul>";
-		}
-		var pages = Math.ceil(data.size/data.limit);
-		pagination += "<ul class='pagination'><li><a style='cursor:text;'>Page " + data.page + " out of " + pages + "</a></li></ul>";
-		if(next <= pages) {
-			pagination += "<ul class='pagination'>";
-			pagination += "<li><a href='#' onclick=\"loadTable('" + data.table + "', " + data.limit + ", " + next + ", '" + data.sort + "', '" + data.order + "')\">&rsaquo;</a></li>";
-			pagination += "<li><a href='#' onclick=\"loadTable('" + data.table + "', " + data.limit + ", " + pages + ", '" + data.sort + "', '" + data.order + "')\">&raquo;</a></li>";
-			pagination += "</ul>";
-		}
-
-		// put in place
-		$('#results-table').append(content);
-		$('#pagination').html(pagination);
-	}
-
-	function generateTable2(data) {
-		// modal title
-		$('#resultsModalTitle').html(data.query);
-
-		// table header
-		var content = "<tr>";
-		for (var key in data.rows[0]) {
-			var order = "";
-			if(data.sort == key && data.order != "1") {
-				order = "1";
-			}
-			content += "<th>";
-			// class='clickable' onclick=\"loadQuery('" + data.query + "', " + data.limit + ", 1, '" + key + "', '" + order + "')\"
-			content += key;
-			content += "</th>";
-		};
-		content += "</tr>\n";
-
-		// table body
-		for(var i = 0; i < data.rows.length; i++) {
-			content += "<tr>";
-			for(var key in data.rows[i]) {
-				content += "<td>";
-				if(data.rows[i][key] === "null") {
-
-				} else {
-					content += data.rows[i][key];
-				}
-				content += "</td>";
-			}
-			content += "</tr>";
-		}
-
-		// pagination
-		var page = parseInt(data.page);
-		var prev = page - 1;
-		var next = page + 1;
-		var pagination = "";
-		if(prev > 0) {
-			pagination += "<ul class='pagination'>";
-			pagination += "<li><a href='#' onclick=\"loadQuery('" + data.query + "', " + data.limit + ", 1, '" + data.sort + "', '" + data.order + "')\">&laquo;</a></li>";
-			pagination += "<li><a href='#' onclick=\"loadQuery('" + data.query + "', " + data.limit + ", " + prev + ", '" + data.sort + "', '" + data.order + "')\">&lsaquo;</a></li>";
-			pagination += "</ul>";
-		}
-		var pages = Math.ceil(data.size/data.limit);
-		pagination += "<ul class='pagination'><li><a style='cursor:text;'>Page " + data.page + " out of " + pages + "</a></li></ul>";
-		if(next <= pages) {
-			pagination += "<ul class='pagination'>";
-			pagination += "<li><a href='#' onclick=\"loadQuery('" + data.query + "', " + data.limit + ", " + next + ", '" + data.sort + "', '" + data.order + "')\">&rsaquo;</a></li>";
-			pagination += "<li><a href='#' onclick=\"loadQuery('" + data.query + "', " + data.limit + ", " + pages + ", '" + data.sort + "', '" + data.order + "')\">&raquo;</a></li>";
-			pagination += "</ul>";
-		}
-
-		// put in place
-		$('#results-table').append(content);
-		$('#pagination').html(pagination);
-	}
-
-	function badQuery() {
-		$('#resultsModalTitle').html('Error!');
-		$('#query-alert').show(0);
-		$('#modal-loading').hide(0);
-	}
-	</script>
+	<script type="text/javascript" src="js/custom.js">	</script>
 </body>
 </html>
