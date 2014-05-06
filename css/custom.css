@@ -52,3 +52,7 @@ header {
     background-color: #EEE;
     padding: 1em;
 }
+
+.glyphicon-remove {
+    color:red;
+}
