@@ -80,11 +80,50 @@ switch ($o) {
 		break;
 
 	case 'i': // insert operations
-		# code...
+		$table = "";
+		$fields = "(";
+		$values = "(";
+		$count = 0;
+		foreach ($_REQUEST as $key => $value) {
+			$count++;
+			if($key == "table") {
+				$table = $value;
+				continue;
+			}
+			if($key == "o") continue;
+			if($count > 1) {
+				$fields .= ",";
+				$values .= ",";
+			}
+			$fields .= $key;
+			$values .= "'".$value."'";
+		}
+		$fields .= ")";
+		$values .= ")";
+		$query = "INSERT INTO $table $fields VALUES $values";
+		$res = pg_query($query) or die('error');
+		echo "";
 		break;
 
 	case 'd': // delete operations
-		# code...
+		$table = "";
+		$fields = "";
+		$count = 0;
+		foreach ($_REQUEST as $key => $value) {
+			$count++;
+			if($key == "table") {
+				$table = $value;
+				continue;
+			}
+			if($key == "o") continue;
+			if($count > 1) {
+				$fields .= "AND ";
+			}
+			$fields .= "$key = '$value' ";
+		}
+		$query = "DELETE FROM $table WHERE $fields";
+		$res = pg_query($query) or die('error');
+		echo "";
 		break;
 
 	case 'u': // update operations
